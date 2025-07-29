@@ -8,8 +8,8 @@ fi
 
 # Build the project
 echo "Building the project..."
-npm run build
+yarn build
 
 # Start the server
 echo "Starting Medusa server..."
-npm start 
+yarn start 
