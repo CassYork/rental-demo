@@ -1,6 +1,9 @@
 const checkEnvVariables = require("./check-env-variables")
 
-checkEnvVariables()
+// Only check environment variables during development
+if (process.env.NODE_ENV === "development") {
+  checkEnvVariables()
+}
 
 /**
  * @type {import('next').NextConfig}
