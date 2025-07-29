@@ -1,0 +1,30 @@
+version: "3.1" # Docker Compose file format version
+
+services:
+  # Database service configuration
+  db:
+    image: postgres:15
+    container_name: postgres_db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: medusa_user
+      POSTGRES_PASSWORD: supersecret
+      POSTGRES_DB: medusa_db
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  # Redis service configuration
+  redis:
+    image: redis:7-alpine # Use the lightweight Redis 7 Alpine image
+    container_name: redis_cache # Optional: set a custom container name
+    ports:
+      - "6379:6379" # Map host port 6379 to container port 6379
+    command: redis-server --save 60 1 --loglevel warning # Adjust save behavior and verbosity
+    volumes:
+      - redis_data:/data # Persist Redis data in a Docker volume
+
+# Volume configuration for persistent storage
+volumes:
+  db_data: # Volume for the database
+  redis_data: # Volume for Redis
