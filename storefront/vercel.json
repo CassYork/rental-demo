@@ -1,0 +1,16 @@
+{
+  "buildCommand": "yarn build",
+  "devCommand": "yarn dev",
+  "installCommand": "yarn install",
+  "framework": "nextjs",
+  "regions": ["iad1"],
+  "functions": {
+    "app/**/*.tsx": {
+      "maxDuration": 30
+    }
+  },
+  "env": {
+    "NEXT_PUBLIC_MEDUSA_BACKEND_URL": "@medusa_backend_url",
+    "NEXT_PUBLIC_MEDUSA_PUBLISHABLE_KEY": "@medusa_publishable_key"
+  }
+} 
