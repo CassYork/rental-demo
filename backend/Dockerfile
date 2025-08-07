@@ -4,16 +4,16 @@ FROM node:20-alpine
 WORKDIR /app
 
 # Copy package files
-COPY package.json yarn.lock ./
+COPY package*.json ./
 
-# Install dependencies
-RUN yarn install --frozen-lockfile
+# Install deps
+RUN npm install
 
-# Copy source code
+# Copy everything
 COPY . .
 
-# Build the application
-RUN yarn build
-
-# Expose port
+# Expose Medusa port
 EXPOSE 9000
+
+# Start Medusa
+CMD ["sh", "-c", "yarn medusa db:create && yarn medusa db:migrate && yarn run seed && yarn medusa user -e admin@test.com -p supersecret -i admin && yarn run start"]
