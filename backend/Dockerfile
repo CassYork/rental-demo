@@ -7,7 +7,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install deps
-RUN npm install
+RUN yarn install
 
 # Copy everything
 COPY . .
