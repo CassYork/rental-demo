@@ -1,16 +1,15 @@
 #!/bin/sh
 
-echo "Running DB create..."
-yarn medusa db:create
-
-echo "Running DB migrate..."
-yarn medusa db:migrate
+# Run migrations and start server
+echo "Running database migrations..."
+npx medusa db:migrate
 
 echo "Seeding database..."
-yarn run seed
+yarn seed || echo "Seeding failed, continuing..."
 
-echo "Creating admin user..."
-yarn medusa user -e admin@test.com -p supersecret -i admin
+npx medusa user -e admin@test.com -p supersecret -i admin
 
-echo "Starting Medusa server..."
-yarn run start
+yarn build
+
+echo "Starting Medusa development server..."
+yarn start
