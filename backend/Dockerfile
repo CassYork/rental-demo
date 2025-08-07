@@ -17,6 +17,3 @@ RUN yarn build
 
 # Expose port
 EXPOSE 9000
-
-# Start the application
-CMD ["yarn", "start"] 
