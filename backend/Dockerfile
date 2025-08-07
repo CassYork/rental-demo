@@ -3,17 +3,19 @@ FROM node:20-alpine
 # Set working directory
 WORKDIR /app
 
-# Copy package files
+# Install dependencies
 COPY package*.json ./
-
-# Install deps
 RUN yarn install
 
-# Copy everything
+# Copy source code and env file
 COPY . .
 
-# Expose Medusa port
+# Make sure our entrypoint is executable
+COPY entrypoint.sh /app/entrypoint.sh
+RUN chmod +x /app/entrypoint.sh
+
+# Expose Medusa default port
 EXPOSE 9000
 
-# Start Medusa
-CMD ["sh", "-c", "yarn medusa db:create && yarn medusa db:migrate && yarn run seed && yarn medusa user -e admin@test.com -p supersecret -i admin && yarn run start"]
+# Run migrations, seeding, and start Medusa
+CMD ["/app/entrypoint.sh"]
