@@ -39,8 +39,8 @@ services:
       - "9000:9000"
     environment:
       - NODE_ENV=development
-      - DATABASE_URL=postgres://postgres:postgres@postgres:5432/medusa-store
-      - REDIS_URL=redis://redis:6379
+      - DATABASE_URL=postgres://postgres:6Ogp4vjpbqsSXG5faI7NLY09wmjPPdKZg8NU0qgJDHEEbTUKxXnziMBtsEL1laS7@q8ocg8k4osoww40woc40oksw:5432/postgres?sslmode=require
+      - REDIS_URL=redis://default:ZPI3FBgQHRYbEc1iHhgoymlVp9UxhTuKbfHDU6i9guhMiqahnJppYv7eFP1Jbkx4@uws08gg0k8woccc40og8044c:6379/0
     env_file:
       - .env
     volumes:
